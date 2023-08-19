@@ -14,12 +14,13 @@ public class CourseCommandLineRunner implements CommandLineRunner {
     //private CourseJdbcRepository repository;
     //@Autowired
     //private CourseJpaRepository repository;
-    @Autowired
-    private CourseSpringDataJpaRepository repository;
-
+    private final CourseSpringDataJpaRepository repository;
+    public CourseCommandLineRunner(CourseSpringDataJpaRepository repository) {
+        this.repository = repository;
+    }
     @Override
     public void run(String... args) throws Exception {
-       /*
+    /*
        repository.insert(new Course(1L, "Spring Framework", "Udemy"));
         repository.insert(new Course(2L, "Spring Framework 2", "Udemy"));
         repository.insert(new Course(3L, "Spring Framework 3", "Udemy"));
@@ -28,8 +29,7 @@ public class CourseCommandLineRunner implements CommandLineRunner {
 
         System.out.println(repository.findById(1L));
         System.out.println(repository.findById(2L));
-        */
-
+    */
         repository.save(new Course(1L, "Spring Framework", "Udemy S.A."));
         repository.save(new Course(2L, "Spring Framework 2", "Udemy"));
         repository.save(new Course(3L, "Spring Framework 3", "Udemy"));

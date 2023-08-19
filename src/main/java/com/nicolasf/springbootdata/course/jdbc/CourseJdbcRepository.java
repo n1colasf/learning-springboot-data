@@ -8,17 +8,21 @@ import org.springframework.stereotype.Repository;
 
 @Repository // indicates that an annotated class is a repository, which is an abstraction of data access and storage
 public class CourseJdbcRepository {
-    @Autowired
-   private JdbcTemplate springJdbcTemplate;
-   private static String INSERT_QUERY =
+   private final JdbcTemplate springJdbcTemplate;
+
+   //Constructor injection
+    public CourseJdbcRepository(JdbcTemplate springJdbcTemplate) {
+        this.springJdbcTemplate = springJdbcTemplate;
+    }
+   private static final String INSERT_QUERY =
            """
            INSERT INTO COURSE (ID, NAME, AUTHOR) VALUES (?, ?, ?)
            """;
-    private static String DELETE_QUERY =
+    private static final String DELETE_QUERY =
             """
             DELETE FROM COURSE WHERE ID = ?
             """;
-    private static String SELECT_QUERY =
+    private static final String SELECT_QUERY =
             """
             SELECT * FROM COURSE WHERE ID = ?
             """;
